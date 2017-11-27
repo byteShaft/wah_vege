@@ -32,6 +32,7 @@ public class OrderHistoryAdapter extends ArrayAdapter {
     private ViewHolder viewHolder;
     private ArrayList<OrderHistoryMain> arrayList;
     private Activity activity;
+    private SubItemHolder subItemHolder;
 
     public OrderHistoryAdapter(Activity activity, ArrayList<OrderHistoryMain> arrayList) {
         super(activity.getApplicationContext(), R.layout.delegate_order_history);
@@ -46,13 +47,23 @@ public class OrderHistoryAdapter extends ArrayAdapter {
         if (convertView == null) {
             convertView = activity.getLayoutInflater().inflate(R.layout.delegate_order_history, parent, false);
             viewHolder = new ViewHolder();
+            subItemHolder = new SubItemHolder();
             viewHolder.orderDate = convertView.findViewById(R.id.order_date);
             viewHolder.totalOrderPrice = convertView.findViewById(R.id.total_order_price);
             viewHolder.orderStatus = convertView.findViewById(R.id.order_status);
             viewHolder.relativeLayout = convertView.findViewById(R.id.order_items_layout);
+            for (int i = 0; i < arrayList.get(position).getArrayList().size(); i++) {
+                viewHolder.subItemHolder  = activity.getLayoutInflater().inflate(R.layout.order_item_details_delegate, viewHolder.relativeLayout, false);
+                subItemHolder.prductName = viewHolder.subItemHolder.findViewById(R.id.product_name);
+                subItemHolder.prductQuantity = viewHolder.subItemHolder.findViewById(R.id.product_quantity);
+                subItemHolder.productPrice = viewHolder.subItemHolder.findViewById(R.id.product_Price);
+                viewHolder.subItemHolder.setTag(subItemHolder);
+                viewHolder.relativeLayout.addView(viewHolder.subItemHolder);
+            }
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
+            subItemHolder =(SubItemHolder) viewHolder.subItemHolder.getTag();
         }
         final OrderHistoryMain orderHistoryMain = arrayList.get(position);
 
@@ -61,15 +72,11 @@ public class OrderHistoryAdapter extends ArrayAdapter {
         double grandTotal = 0;
         for (int i = 0; i < orderHistoryItmesArrayList.size(); i++) {
             OrderHistoryItmes orderHistoryItmes = orderHistoryItmesArrayList.get(i);
-            View view = activity.getLayoutInflater().inflate(R.layout.order_item_details_delegate, viewHolder.relativeLayout, false);
-            TextView prductName = view.findViewById(R.id.product_name);
-            TextView prductQuantity = view.findViewById(R.id.product_quantity);
-            TextView productPrice = view.findViewById(R.id.product_Price);
-            prductName.setText(orderHistoryItmes.getProductName());
-            prductQuantity.setText(orderHistoryItmes.getProductQuantity() + "KG");
+            subItemHolder.prductName.setText(orderHistoryItmes.getProductName());
+            subItemHolder.prductQuantity.setText(orderHistoryItmes.getProductQuantity() + "KG");
             float quantity = orderHistoryItmes.getProductQuantity();
             double totalPrice = quantity * Integer.valueOf(orderHistoryItmes.getProductPrice());
-            productPrice.setText("RS: " + String.valueOf(totalPrice));
+            subItemHolder.productPrice.setText("RS: " + String.valueOf(totalPrice));
             grandTotal = grandTotal + totalPrice;
             viewHolder.totalOrderPrice.setText("RS: " + String.valueOf(grandTotal));
             String input = orderHistoryMain.getDeliveryDate();
@@ -80,7 +87,6 @@ public class OrderHistoryAdapter extends ArrayAdapter {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            viewHolder.relativeLayout.addView(view);
         }
         return convertView;
     }
@@ -95,11 +101,10 @@ public class OrderHistoryAdapter extends ArrayAdapter {
         TextView totalOrderPrice;
         TextView orderStatus;
         LinearLayout relativeLayout;
-        
+        View subItemHolder;
     }
 
     class SubItemHolder{
-
         TextView prductName;
         TextView prductQuantity;
         TextView productPrice;

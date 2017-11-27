@@ -3,6 +3,7 @@ package com.byteshaft.wahwege.adapters;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -26,6 +27,7 @@ public class DemandListAdapter extends ArrayAdapter {
     private ViewHolder viewHolder;
     private ArrayList<DemandsMianList> arrayList;
     private Activity activity;
+    private SubHolder subHolder;
 
     public DemandListAdapter(Activity activity, ArrayList<DemandsMianList> arrayList) {
         super(activity.getApplicationContext(), R.layout.delegate_demand_main_list);
@@ -42,21 +44,29 @@ public class DemandListAdapter extends ArrayAdapter {
             viewHolder = new ViewHolder();
             viewHolder.orderDate = convertView.findViewById(R.id.order_date);
             viewHolder.relativeLayout = convertView.findViewById(R.id.order_items_layout);
+            for (int i = 0; i < arrayList.get(position).getArrayList().size(); i++) {
+                Log.i("TAG", "position " + position + " array list "+ arrayList.get(position).getArrayList().size());
+                subHolder = new SubHolder();
+                viewHolder.subItemHolder = activity.getLayoutInflater()
+                        .inflate(R.layout.delegate_demand_items_list, viewHolder.relativeLayout,
+                                false);
+                subHolder.productName = viewHolder.subItemHolder.findViewById(R.id.product_name);
+                subHolder.productQuantity = viewHolder.subItemHolder.findViewById(R.id.product_quantity);
+                viewHolder.subItemHolder.setTag(subHolder);
+                viewHolder.relativeLayout.addView(viewHolder.subItemHolder);
+            }
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
+            subHolder = (SubHolder) viewHolder.subItemHolder.getTag();
         }
         final DemandsMianList demandsMianList = arrayList.get(position);
         ArrayList<DemandsItemsList> demandsItemsListArrayList = demandsMianList.getArrayList();
         for (int i = 0; i < demandsItemsListArrayList.size(); i++) {
             DemandsItemsList demandsItemsList = demandsItemsListArrayList.get(i);
-            View view = activity.getLayoutInflater().inflate(R.layout.delegate_demand_items_list, viewHolder.relativeLayout, false);
-            TextView prductName = view.findViewById(R.id.product_name);
-            TextView prductQuantity = view.findViewById(R.id.product_quantity);
-            prductName.setText(demandsItemsList.getProductName());
-            prductQuantity.setText(demandsItemsList.getProductQuantity() + "KG");
+            subHolder.productName.setText(demandsItemsList.getProductName());
+            subHolder.productQuantity.setText(demandsItemsList.getProductQuantity() + "KG");
             viewHolder.orderDate.setText(demandsMianList.getDeliveryDate());
-            viewHolder.relativeLayout.addView(view);
         }
         return convertView;
     }
@@ -69,6 +79,12 @@ public class DemandListAdapter extends ArrayAdapter {
     class ViewHolder {
         TextView orderDate;
         LinearLayout relativeLayout;
+        View subItemHolder;
+    }
+
+    class SubHolder{
+        TextView productName;
+        TextView productQuantity;
     }
 }
 
