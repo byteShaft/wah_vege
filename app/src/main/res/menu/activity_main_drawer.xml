@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_user_profile"
+            android:icon="@mipmap/user_profile"
+            android:title="User Profile" />
+        <item
+            android:id="@+id/nav_purchase_history"
+            android:icon="@mipmap/history"
+            android:title="Purchase History" />
+        <item
+            android:id="@+id/nav_future_demand"
+            android:icon="@mipmap/future_demand"
+            android:title="Future Demand" />
+
+        <item
+            android:id="@+id/nav_notifications"
+            android:icon="@mipmap/notification"
+            android:title="Notification" />
+
+            <item
+                android:id="@+id/nav_complains"
+                android:icon="@mipmap/complains"
+                android:title="Suggestions" />
+            <item
+                android:id="@+id/nav_about_us"
+                android:icon="@mipmap/about_us"
+                android:title="About Us" />
+
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@mipmap/contact_us"
+                android:title="Contact Us" />
+
+            <item
+                android:id="@+id/nav_faq"
+                android:icon="@mipmap/faq"
+                android:title="FAQ" />
+
+            <item
+                android:id="@+id/nav_rate_us"
+                android:icon="@mipmap/rate_us"
+                android:title="Rate Us" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@mipmap/logout"
+            android:title="Logout" />
+    </group>
+</menu>

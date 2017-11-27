@@ -1,0 +1,34 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:id="@+id/cart_image_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/shop_now"/>
+
+    <FrameLayout
+        android:id="@+id/view_circle"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="5dp"
+        android:background="@mipmap/circle"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/view_alert_count_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            tools:text="3"/>
+    </FrameLayout>
+</FrameLayout>

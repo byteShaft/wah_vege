@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bc">
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/summary_edit_text_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/complains"
+            android:textColorHint="@color/hint_color">
+
+            <EditText
+                android:id="@+id/summary_complains_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:singleLine="true"
+                android:inputType="text"
+                android:maxLength="50"
+                android:background="@drawable/edit_text_background"
+                android:hint="Summary"
+                android:paddingLeft="5dp"
+                android:paddingTop="@dimen/floating_hint_margin"
+                android:textColor="@color/edit_text_color"
+                android:textSize="15sp" />
+        </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/complains_edit_text_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/complains"
+        android:textColorHint="@color/hint_color">
+
+        <EditText
+            android:id="@+id/complains_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:gravity="top"
+            android:maxLength="150"
+            android:lines="5"
+            android:inputType="textMultiLine"
+            android:background="@drawable/edit_text_background"
+            android:hint="Suggestions/Complains"
+            android:paddingLeft="5dp"
+            android:paddingTop="@dimen/floating_hint_margin"
+            android:textColor="@color/edit_text_color"
+            android:textSize="15sp" />
+    </android.support.design.widget.TextInputLayout>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/send_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/login_button_background"
+                android:text="submit"
+                android:textAllCaps="true"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/edit_text_color" />
+    </LinearLayout>
+        </RelativeLayout>

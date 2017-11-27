@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@mipmap/bc"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ListView
+        android:id="@+id/order_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/colorPrimaryDark"
+        android:dividerHeight="1dp" />
+
+    <TextView
+        android:id="@+id/check_out_price"
+        android:background="@drawable/button_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:gravity="center_horizontal"
+        android:textColor="#000"
+        android:padding="10dp"/>
+
+    <Button
+        android:id="@+id/proceed_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:background="@drawable/button_background"
+        android:drawablePadding="5dp"
+        android:text="Proceed"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

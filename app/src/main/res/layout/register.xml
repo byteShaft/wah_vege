@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bc">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/hint_color">
+
+                <EditText
+                    android:id="@+id/user_name_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Full Name"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="@dimen/floating_hint_margin"
+
+                    android:textColor="@color/edit_text_color"
+                    android:textSize="15sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/hint_color"
+                >
+
+                <EditText
+                    android:id="@+id/email_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="@dimen/floating_hint_margin"
+                    android:textColor="@color/edit_text_color"
+                    android:textSize="15sp" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/hint_color"
+                >
+
+                <EditText
+                    android:id="@+id/mobile_number_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Mobile Number"
+                    android:text="92"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="@dimen/floating_hint_margin"
+                    android:textColor="@color/edit_text_color"
+                    android:textSize="15sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/hint_color">
+
+                <EditText
+                    android:id="@+id/land_line_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Landline Number (optional)"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="@dimen/floating_hint_margin"
+                    android:textColor="@color/edit_text_color"
+                    android:textSize="15sp" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/hint_color">
+
+                <EditText
+                    android:id="@+id/password_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/edit_text_color"
+                    android:paddingTop="@dimen/floating_hint_margin"
+                    android:textSize="15sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/hint_color">
+
+                <EditText
+                    android:id="@+id/verify_password_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Verify Password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/edit_text_color"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="@dimen/floating_hint_margin"
+                    android:textSize="15sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/hint_color">
+
+                <EditText
+                    android:id="@+id/address_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Enter Your Address"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="@dimen/floating_hint_margin"
+                    android:textColor="@color/edit_text_color"
+                    android:textSize="15sp" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/pick_for_current_location"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:textColor="#FFF"
+                android:text="Add Your current Location"/>
+
+            <RelativeLayout
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/card_view_background"
+                android:layout_height="200dp">
+
+                <fragment
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/map"
+                    android:layout_margin="3dp"
+                    android:name="com.google.android.gms.maps.SupportMapFragment" />
+            </RelativeLayout>
+
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/sign_up_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/login_button_background"
+                android:text="Create Account"
+                android:layout_marginBottom="10dp"
+                android:textColor="#FFF" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
