@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.byteshaft.requests.HttpRequest;
 import com.byteshaft.wahwege.MainActivity;
@@ -20,8 +19,6 @@ import com.byteshaft.wahwege.R;
 import com.byteshaft.wahwege.adapters.DemandListAdapter;
 import com.byteshaft.wahwege.gettersetter.DemandsItemsList;
 import com.byteshaft.wahwege.gettersetter.DemandsMianList;
-import com.byteshaft.wahwege.gettersetter.OrderHistoryItmes;
-import com.byteshaft.wahwege.gettersetter.OrderHistoryMain;
 import com.byteshaft.wahwege.utils.AppGlobals;
 import com.byteshaft.wahwege.utils.Helpers;
 
