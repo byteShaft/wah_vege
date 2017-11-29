@@ -4,7 +4,7 @@ package com.byteshaft.wahwege.gettersetter;
  * Created by husnain on 11/20/17.
  */
 
-public class OrderHistoryItmes {
+public class OrderHistoryItems {
 
 
     private int productId;

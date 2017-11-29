@@ -13,8 +13,6 @@ import com.byteshaft.wahwege.R;
 import com.byteshaft.wahwege.gettersetter.DemandsItemsList;
 import com.byteshaft.wahwege.gettersetter.DemandsMianList;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -48,15 +46,22 @@ public class DemandListAdapter extends ArrayAdapter {
         }
         final DemandsMianList demandsMianList = arrayList.get(position);
         ArrayList<DemandsItemsList> demandsItemsListArrayList = demandsMianList.getArrayList();
-        for (int i = 0; i < demandsItemsListArrayList.size(); i++) {
-            DemandsItemsList demandsItemsList = demandsItemsListArrayList.get(i);
-            View view = activity.getLayoutInflater().inflate(R.layout.delegate_demand_items_list, viewHolder.relativeLayout, false);
-            TextView prductName = view.findViewById(R.id.product_name);
-            TextView prductQuantity = view.findViewById(R.id.product_quantity);
-            prductName.setText(demandsItemsList.getProductName());
-            prductQuantity.setText(demandsItemsList.getProductQuantity() + "KG");
-            viewHolder.orderDate.setText(demandsMianList.getDeliveryDate());
-            viewHolder.relativeLayout.addView(view);
+        if (demandsItemsListArrayList.size() > 0) {
+            viewHolder.relativeLayout.removeAllViews();
+            for (int i = 0; i < demandsItemsListArrayList.size(); i++) {
+                View childView = activity.getLayoutInflater()
+                        .inflate(R.layout.delegate_demand_items_list, viewHolder.relativeLayout,
+                                false);
+                TextView productName = childView.findViewById(R.id.product_name);
+                TextView productQuantity = childView.findViewById(R.id.product_quantity);
+                viewHolder.relativeLayout.addView(childView);
+                DemandsItemsList demandsItemsList = demandsItemsListArrayList.get(i);
+                productName.setText(demandsItemsList.getProductName());
+                productQuantity.setText(demandsItemsList.getProductQuantity() + "KG");
+                viewHolder.orderDate.setText(demandsMianList.getDeliveryDate());
+            }
+        } else {
+            viewHolder.relativeLayout.removeAllViews();
         }
         return convertView;
     }
@@ -70,5 +75,6 @@ public class DemandListAdapter extends ArrayAdapter {
         TextView orderDate;
         LinearLayout relativeLayout;
     }
+
 }
 

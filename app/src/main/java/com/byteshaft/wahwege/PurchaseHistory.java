@@ -12,9 +12,8 @@ import android.widget.ListView;
 
 import com.byteshaft.requests.HttpRequest;
 import com.byteshaft.wahwege.adapters.OrderHistoryAdapter;
-import com.byteshaft.wahwege.gettersetter.OrderHistoryItmes;
+import com.byteshaft.wahwege.gettersetter.OrderHistoryItems;
 import com.byteshaft.wahwege.gettersetter.OrderHistoryMain;
-import com.byteshaft.wahwege.gettersetter.VegetablesFruits;
 import com.byteshaft.wahwege.utils.AppGlobals;
 import com.byteshaft.wahwege.utils.Helpers;
 
@@ -65,6 +64,7 @@ public class PurchaseHistory extends Fragment implements HttpRequest.OnErrorList
                 Helpers.dismissProgressDialog();
                 switch (request.getStatus()) {
                     case HttpURLConnection.HTTP_OK:
+                        Log.i("TAG", "response " + request.getResponseText());
                         try {
                             JSONArray orderHistoryJSONArray = new JSONArray(request.getResponseText());
                             for (int j = 0; j < orderHistoryJSONArray.length(); j++) {
@@ -78,22 +78,24 @@ public class PurchaseHistory extends Fragment implements HttpRequest.OnErrorList
                                 } else {
                                     orderHistoryMain.setDeliveryStatus("Pending");
                                 }
-                                ArrayList<OrderHistoryItmes> arrayList = new ArrayList<>();
+                                ArrayList<OrderHistoryItems> arrayList = new ArrayList<>();
                                 JSONArray orderItemsJsonArry = jsonObject.getJSONArray("items");
                                 for (int i = 0; i < orderItemsJsonArry.length(); i++) {
-                                    OrderHistoryItmes orderHistoryItmes = new OrderHistoryItmes();
+                                    OrderHistoryItems orderHistoryItems = new OrderHistoryItems();
                                     JSONObject orderItemsObject = orderItemsJsonArry.getJSONObject(i);
                                     JSONObject jsonObjectDetails = orderItemsObject.getJSONObject("item");
-                                    orderHistoryItmes.setProductId(jsonObjectDetails.getInt("id"));
-                                    orderHistoryItmes.setProductName(jsonObjectDetails.getString("name"));
-                                    orderHistoryItmes.setProductPrice(jsonObjectDetails.getInt("wah_vege_price"));
-                                    orderHistoryItmes.setProductQuantity(orderItemsObject.getInt("quantity"));
-                                    arrayList.add(orderHistoryItmes);
+                                    orderHistoryItems.setProductId(jsonObjectDetails.getInt("id"));
+                                    orderHistoryItems.setProductName(jsonObjectDetails.getString("name"));
+                                    orderHistoryItems.setProductPrice(jsonObjectDetails.getInt("wah_vege_price"));
+                                    orderHistoryItems.setProductQuantity(orderItemsObject.getInt("quantity"));
+                                    arrayList.add(orderHistoryItems);
                                 }
                                 orderHistoryMain.setArrayList(arrayList);
-                                Log.i("TAG", "total items "+ arrayList.size());
-                                orderHistoryMainArrayList.add(orderHistoryMain);
-                                orderHistoryAdapter.notifyDataSetChanged();
+//                                Log.i("TAG", "total items "+ arrayList.size());
+                                if (arrayList.size() > 0) {
+                                    orderHistoryMainArrayList.add(orderHistoryMain);
+                                    orderHistoryAdapter.notifyDataSetChanged();
+                                }
                             }
                             currentArraySize = orderHistoryMainArrayList.size();
                         } catch (JSONException e) {
