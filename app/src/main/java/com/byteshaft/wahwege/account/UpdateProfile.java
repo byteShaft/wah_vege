@@ -370,6 +370,8 @@ public class UpdateProfile extends AppCompatActivity implements HttpRequest.OnEr
                             .replace("lat/lng:", "").replace("(", "").replace(")", "").trim();
                     Log.i("TAG", userLocation);
                     String[] splitLocation = userLocation.split(",");
+                    Log.i("TAG", String.valueOf(splitLocation[0]== null));
+                    Log.i("TAG", String.valueOf(splitLocation[1]== null));
                     LatLng latLng = new LatLng(Double.parseDouble(splitLocation[0]),
                             Double.parseDouble(splitLocation[1]));
                     drawMarker(latLng, "");

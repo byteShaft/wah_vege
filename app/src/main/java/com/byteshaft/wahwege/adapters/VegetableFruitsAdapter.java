@@ -55,6 +55,7 @@ public class VegetableFruitsAdapter extends ArrayAdapter<String> {
             viewHolder.productMarketPrice = convertView.findViewById(R.id.product_price);
             viewHolder.productWahVegePrice = convertView.findViewById(R.id.wahvege_price);
             viewHolder.productImage = convertView.findViewById(R.id.product_image);
+            viewHolder.availableStock = convertView.findViewById(R.id.stock_count);
             viewHolder.orderNow = convertView.findViewById(R.id.order_now);
             convertView.setTag(viewHolder);
         } else {
@@ -62,9 +63,10 @@ public class VegetableFruitsAdapter extends ArrayAdapter<String> {
 
         }
         VegetablesFruits vegetablesFruits = arrayList.get(position);
-        viewHolder.productName.setText( vegetablesFruits.getProductName());
+        viewHolder.productName.setText(vegetablesFruits.getProductName());
         viewHolder.productMarketPrice.setText(vegetablesFruits.getProductMarketPrice());
         viewHolder.productWahVegePrice.setText(vegetablesFruits.getProductWahVegePrice());
+        viewHolder.availableStock.setText(vegetablesFruits.getProductStockCount());
         Picasso.with(AppGlobals.getContext()).load(vegetablesFruits.getProductImage()).into(viewHolder.productImage);
         viewHolder.orderNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,6 +140,7 @@ public class VegetableFruitsAdapter extends ArrayAdapter<String> {
         CircleImageView productImage;
         TextView productMarketPrice;
         TextView productWahVegePrice;
+        TextView availableStock;
         TextView orderNow;
     }
 }
