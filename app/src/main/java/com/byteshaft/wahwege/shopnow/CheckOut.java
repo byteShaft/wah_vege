@@ -103,6 +103,7 @@ public class CheckOut extends AppCompatActivity implements View.OnClickListener,
 
     }
 
+
     @Override
     public void onReadyStateChange(HttpRequest request, int readyState) {
         switch (readyState) {
@@ -123,6 +124,7 @@ public class CheckOut extends AppCompatActivity implements View.OnClickListener,
                         Toast.makeText(getApplicationContext(), "Your request has been received", Toast.LENGTH_SHORT).show();
                         AppGlobals.ordersHashMap = new HashMap<>();
                         finish();
+                        Fruits.getsInstance().getFruitsList();
                 }
         }
     }

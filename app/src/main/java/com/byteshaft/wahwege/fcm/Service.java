@@ -19,6 +19,8 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
+import org.json.JSONObject;
+
 import static com.byteshaft.wahwege.utils.AppGlobals.sImageLoader;
 
 
@@ -27,15 +29,15 @@ public class Service extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        Log.i("DATA" + " good ", remoteMessage.getData().toString());
-        sendNotification("yousdkjhclk", "wahVege", "promotions");
+        Log.i("DATA" + "good", remoteMessage.getData().toString());
+        sendNotification(remoteMessage.getData().get("text"), "Promotions");
     }
 
-    private void sendNotification(String messageBody, String doctorName, String appointmentReason) {
+    private void sendNotification(String messageBody, String appName) {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("promotion", true);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent,
                 PendingIntent.FLAG_ONE_SHOT);
-
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         DisplayImageOptions options;
         options = new DisplayImageOptions.Builder()
@@ -46,21 +48,17 @@ public class Service extends FirebaseMessagingService {
                 .cacheOnDisc(false).considerExifParams(true).build();
 //        Bitmap bitmap = sImageLoader.loadImageSync(AppGlobals.SERVER_IP + photo, options);
 
-
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.circle))
                 .setSmallIcon(R.mipmap.circle)
-                .setTicker(appointmentReason)
                 .setStyle(new NotificationCompat.BigTextStyle())
-                .setContentTitle(doctorName)
+                .setContentTitle(appName)
                 .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
-
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
         notificationManager.notify(1, notificationBuilder.build());
     }
 }

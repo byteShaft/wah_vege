@@ -48,6 +48,12 @@ public class Fruits extends Fragment implements HttpRequest.OnErrorListener,
     private ImageView mCartImage;
     private static FrameLayout frameLayout;
 
+    public static Fruits sInstance;
+
+    public static Fruits getsInstance() {
+        return sInstance;
+    }
+
 
     public static void updateFruitOrder() {
         if (mCartCount != null) {
@@ -65,6 +71,7 @@ public class Fruits extends Fragment implements HttpRequest.OnErrorListener,
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         AppGlobals.ordersHashMap = new HashMap<>();
+        sInstance = this;
         mBaseView = inflater.inflate(R.layout.activity_fruits, container, false);
         ((AppCompatActivity) getActivity()).getSupportActionBar()
                 .setTitle("Fruits");
@@ -84,6 +91,9 @@ public class Fruits extends Fragment implements HttpRequest.OnErrorListener,
                 Helpers.dismissProgressDialog();
                 switch (request.getStatus()) {
                     case HttpURLConnection.HTTP_OK:
+                        mfruitsArrayList = new ArrayList<>();
+                        vegetableFruitsAdapter = new VegetableFruitsAdapter(getActivity(), mfruitsArrayList);
+                        mfruitsListView.setAdapter(vegetableFruitsAdapter);
                         try {
                             JSONArray jsonArray = new JSONArray(request.getResponseText());
                             for (int i = 0; i < jsonArray.length(); i++) {
@@ -94,6 +104,7 @@ public class Fruits extends Fragment implements HttpRequest.OnErrorListener,
                                 vegetablesFruits.setProductName(jsonObject.getString("name"));
                                 vegetablesFruits.setProductWahVegePrice(jsonObject.getString("wah_vege_price"));
                                 vegetablesFruits.setProductMarketPrice(jsonObject.getString("market_price"));
+                                vegetablesFruits.setProductStockCount(jsonObject.getString("stock_count"));
                                 vegetablesFruits.setProductImage(jsonObject.getString("image"));
                                 mfruitsArrayList.add(vegetablesFruits);
                                 vegetableFruitsAdapter.notifyDataSetChanged();
@@ -120,7 +131,7 @@ public class Fruits extends Fragment implements HttpRequest.OnErrorListener,
 
     }
 
-    private void getFruitsList() {
+    public void getFruitsList() {
         request = new HttpRequest(getActivity());
         request.setOnReadyStateChangeListener(this);
         request.setOnErrorListener(this);

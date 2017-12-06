@@ -24,6 +24,7 @@ import com.byteshaft.wahwege.contactdetails.RateUs;
 import com.byteshaft.wahwege.shopnow.ShopNow;
 import com.byteshaft.wahwege.utils.AppGlobals;
 import com.codemybrainsout.ratingdialog.RatingDialog;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sInstance = this;
+        FirebaseMessaging.getInstance().subscribeToTopic("wahvege.promotion_created");
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,10 +50,14 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView =  findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         if (AppGlobals.isLogin()) {
-            loadFragment(new ShopNow());
+            if (getIntent().getBooleanExtra("promotion", false)) {
+                loadFragment(new Notifications());
+            } else {
+                loadFragment(new ShopNow());
+            }
         } else {
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         }
@@ -81,8 +87,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_purchase_history) {
             loadFragment(new PurchaseHistory());
 
-        }  else if (id == R.id.nav_notifications) {
-            startActivity(new Intent(getApplicationContext(), Notifications.class));
+        } else if (id == R.id.nav_notifications) {
+            loadFragment(new Notifications());
 
         } else if (id == R.id.nav_complains) {
             loadFragment(new SuggestionsComplains());

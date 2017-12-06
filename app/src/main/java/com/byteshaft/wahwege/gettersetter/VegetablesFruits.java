@@ -13,6 +13,16 @@ public class VegetablesFruits {
     private String productImage;
     private String productMarketPrice;
     private String productWahVegePrice;
+    private String productStockCount;
+
+    public String getProductStockCount() {
+        return productStockCount;
+    }
+
+    public void setProductStockCount(String productStockCount) {
+        this.productStockCount = productStockCount;
+    }
+
 
     public int getProductId() {
         return productId;
