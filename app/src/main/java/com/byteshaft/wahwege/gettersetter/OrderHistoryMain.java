@@ -8,16 +8,16 @@ import java.util.ArrayList;
 
 public class OrderHistoryMain {
 
-    private ArrayList<OrderHistoryItmes> arrayList;
+    private ArrayList<OrderHistoryItems> arrayList;
     private String deliveryStatus;
     private String grandTotal;
     private String deliveryDate;
 
-    public ArrayList<OrderHistoryItmes> getArrayList() {
+    public ArrayList<OrderHistoryItems> getArrayList() {
         return arrayList;
     }
 
-    public void setArrayList(ArrayList<OrderHistoryItmes> arrayList) {
+    public void setArrayList(ArrayList<OrderHistoryItems> arrayList) {
         this.arrayList = arrayList;
     }
 
