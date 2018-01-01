@@ -58,10 +58,7 @@
         </activity>
         <activity android:name=".account.ForgotPasswordActivity"/>
         <activity android:name=".account.UpdateProfile"/>
-
-        <activity android:name=".contactdetails.AboutUs"/>
         <activity android:name=".contactdetails.ContactUs"/>
-
         <activity android:name=".account.ResetPassword"/>
         <activity android:name=".shopnow.CheckOut"/>
         <activity android:name=".FutureDemand.FutureDemandCheckOut"/>

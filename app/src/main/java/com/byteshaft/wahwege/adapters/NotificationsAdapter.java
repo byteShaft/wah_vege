@@ -48,14 +48,14 @@ public class NotificationsAdapter extends ArrayAdapter<String> {
         }
         Notifications notifications = arrayList.get(position);
         viewHolder.notificationsTextView.setText(notifications.getNotificationsMessageBody());
-//        String input = notifications.getNotificationsTime();
-//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS");
-//        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//        try {
-//            viewHolder.notificationsTime.setText(df.format(format.parse(input)));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+        String input = notifications.getNotificationsTime();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS");
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            viewHolder.notificationsTime.setText(df.format(format.parse(input)));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return convertView;
     }
 

@@ -65,7 +65,7 @@ public class SuggestionsComplains extends Fragment implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.send_button:
-                mComplainsEditTextString =  mSummaryComplainsEditText.getText().toString();
+                mComplainsEditTextString =  mComplainsEditText.getText().toString();
                 mSummaryComplainsEditTextString =  mSummaryComplainsEditText.getText().toString();
                 submitComplain(mSummaryComplainsEditTextString, mComplainsEditTextString);
 

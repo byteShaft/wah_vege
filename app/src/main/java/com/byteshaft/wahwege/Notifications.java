@@ -63,7 +63,7 @@ public class Notifications extends Fragment {
                                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                                         com.byteshaft.wahwege.gettersetter.Notifications notifications = new com.byteshaft.wahwege.gettersetter.Notifications();
                                         notifications.setNotificationsMessageBody(jsonObject.getString("text"));
-//                                        notifications.setNotificationsTime(jsonObject.getString("named_id"));
+                                        notifications.setNotificationsTime(jsonObject.getString("created_at"));
                                         notificationsArrayList.add(notifications);
                                     }
                                     notificationsAdapter = new NotificationsAdapter(getActivity(), notificationsArrayList);

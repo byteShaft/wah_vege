@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@mipmap/bc"
     android:orientation="vertical"
@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/check_out_price"
         android:dividerHeight="1dp" />
 
     <TextView
@@ -21,6 +23,7 @@
         android:layout_margin="3dp"
         android:gravity="center_horizontal"
         android:textColor="#000"
+        android:layout_above="@+id/proceed_button"
         android:padding="10dp"/>
 
     <Button
@@ -31,6 +34,7 @@
         android:background="@drawable/button_background"
         android:drawablePadding="5dp"
         android:text="Proceed"
+        android:layout_alignParentBottom="true"
         android:textColor="@android:color/white" />
 
-</LinearLayout>
+</RelativeLayout>
