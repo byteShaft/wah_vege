@@ -42,7 +42,6 @@ public class ResetPassword extends AppCompatActivity implements
     private HttpRequest request;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,10 +50,10 @@ public class ResetPassword extends AppCompatActivity implements
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.reset_password);
         overridePendingTransition(R.anim.anim_left_in, R.anim.anim_left_out);
-        mEmail = (EditText) findViewById(R.id.email_edit_text);
-        mEmailOtp = (EditText) findViewById(R.id.email_otp);
-        mNewPassword = (EditText) findViewById(R.id.new_password);
-        mResetButton = (Button) findViewById(R.id.reset_button);
+        mEmail = findViewById(R.id.email_edit_text);
+        mEmailOtp = findViewById(R.id.email_otp);
+        mNewPassword = findViewById(R.id.new_password);
+        mResetButton = findViewById(R.id.reset_button);
 
         mEmail.setTypeface(AppGlobals.typefaceNormal);
         mEmailOtp.setTypeface(AppGlobals.typefaceNormal);
@@ -70,7 +69,6 @@ public class ResetPassword extends AppCompatActivity implements
             }
         });
         mEmail.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_EMAIL));
-        mEmail.setEnabled(false);
         mEmailAddressString = AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_EMAIL);
     }
 
@@ -80,7 +78,7 @@ public class ResetPassword extends AppCompatActivity implements
         mNewPasswordString = mNewPassword.getText().toString();
         mEmailOtpString = mEmailOtp.getText().toString();
         mEmailAddressString = mEmail.getText().toString();
-        
+
         if (mNewPasswordString.trim().isEmpty() || mNewPasswordString.length() < 3) {
             mNewPassword.setError("enter at least 3 characters");
             valid = false;

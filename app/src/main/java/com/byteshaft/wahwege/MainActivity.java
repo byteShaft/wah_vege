@@ -94,10 +94,10 @@ public class MainActivity extends AppCompatActivity
             loadFragment(new SuggestionsComplains());
 
         } else if (id == R.id.nav_about_us) {
-            startActivity(new Intent(getApplicationContext(), AboutUs.class));
+            loadFragment(new AboutUs());
 
         } else if (id == R.id.nav_faq) {
-            startActivity(new Intent(getApplicationContext(), Faq.class));
+            loadFragment(new Faq());
 
         } else if (id == R.id.nav_share) {
             shareDialog();
