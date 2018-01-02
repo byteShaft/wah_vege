@@ -95,7 +95,7 @@ public class UpdateProfile extends AppCompatActivity implements HttpRequest.OnEr
         mAddressEditText = findViewById(R.id.address_edit_text);
         mSectorSpinner = findViewById(R.id.sector_spinner);
         mUpdateButton = findViewById(R.id.update_button);
-
+        
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -367,14 +367,17 @@ public class UpdateProfile extends AppCompatActivity implements HttpRequest.OnEr
                             .newCameraPosition(cameraPosition));
                     Log.i("TAG", AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_LOCATION));
                     String userLocation = AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_LOCATION)
-                            .replace("lat/lng:", "").replace("(", "").replace(")", "").trim();
-                    Log.i("TAG", userLocation);
-                    String[] splitLocation = userLocation.split(",");
-                    Log.i("TAG", String.valueOf(splitLocation[0]== null));
-                    Log.i("TAG", String.valueOf(splitLocation[1]== null));
-                    LatLng latLng = new LatLng(Double.parseDouble(splitLocation[0]),
-                            Double.parseDouble(splitLocation[1]));
-                    drawMarker(latLng, "");
+                            .replace("lat/lng:", "")
+                            .replace("(", "").replace(")", "").trim();
+                    if (!userLocation.equals("")) {
+                        Log.i("TAG", userLocation);
+                        String[] splitLocation = userLocation.split(",");
+                        Log.i("TAG", String.valueOf(splitLocation[0] == null));
+                        Log.i("TAG", String.valueOf(splitLocation[1] == null));
+                        LatLng latLng = new LatLng(Double.parseDouble(splitLocation[0]),
+                                Double.parseDouble(splitLocation[1]));
+                        drawMarker(latLng, "");
+                    }
                 }
                 zoomCounter++;
             }
