@@ -45,6 +45,7 @@ public class OrderHistoryAdapter extends ArrayAdapter {
             viewHolder.orderStatus = convertView.findViewById(R.id.order_status);
             viewHolder.relativeLayout = convertView.findViewById(R.id.order_items_layout);
             convertView.setTag(viewHolder);
+
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
@@ -55,9 +56,11 @@ public class OrderHistoryAdapter extends ArrayAdapter {
 //        Log.i("TAG", "position " + position);
         double grandTotal = 0;
         if (orderHistoryItemsArrayList.size() > 0 ) {
+            viewHolder.relativeLayout.removeAllViews();
             for (int i = 0; i < orderHistoryItemsArrayList.size(); i++) {
-                View childView = activity.getLayoutInflater().inflate(R.layout.order_item_details_delegate, viewHolder.relativeLayout, false);
-
+                View childView = activity.getLayoutInflater()
+                        .inflate(R.layout.order_item_details_delegate,
+                                viewHolder.relativeLayout, false);
                 TextView prductName = childView.findViewById(R.id.product_name);
                 TextView prductQuantity = childView.findViewById(R.id.product_quantity);
                 TextView productPrice = childView.findViewById(R.id.product_Price);
