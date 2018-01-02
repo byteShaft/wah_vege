@@ -153,7 +153,6 @@ public class Vegetables extends Fragment implements HttpRequest.OnErrorListener,
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.cart_image:
-
                 return true;
         }
         return super.onOptionsItemSelected(item);

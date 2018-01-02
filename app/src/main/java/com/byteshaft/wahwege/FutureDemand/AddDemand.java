@@ -81,9 +81,14 @@ public class AddDemand extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.date_edit_text:
-                new DatePickerDialog(getActivity(), date, mCalendar
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.DAY_OF_YEAR, 0);
+                long lowerLimit = calendar.getTimeInMillis();
+                DatePickerDialog datePickerDialog =  new DatePickerDialog(getActivity(), date, mCalendar
                         .get(Calendar.YEAR), mCalendar.get(Calendar.MONTH),
-                        mCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        mCalendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMinDate(lowerLimit);
+                datePickerDialog.show();
             break;
             case R.id.next_button:
                 mDateEditTextString = mDateEditText.getText().toString();

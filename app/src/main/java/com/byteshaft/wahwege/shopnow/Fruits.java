@@ -61,6 +61,7 @@ public class Fruits extends Fragment implements HttpRequest.OnErrorListener,
                 mCartCount.setText(String.valueOf(AppGlobals.ordersHashMap.size()));
             } else {
                 mCartCount.setText("0");
+
             }
 
             frameLayout.setVisibility((AppGlobals.ordersHashMap.size() > 0) ? View.VISIBLE : View.GONE);
