@@ -252,7 +252,6 @@ public class CodeConfirmationActivity extends AppCompatActivity implements HttpR
                             String[] message = msgBody.split(":");
                             Log.i("TAG", message[1].trim());
                             mConfirmationCodeEditText.setText(message[1].trim());
-
                         }
                     } catch (Exception e) {
                             Log.d("Exception caught",e.getMessage());

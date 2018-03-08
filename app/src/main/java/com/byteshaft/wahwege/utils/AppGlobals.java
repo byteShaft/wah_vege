@@ -23,10 +23,10 @@ import java.util.HashMap;
 public class AppGlobals extends Application {
 
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
-    private static Context sContext;
 
     public static Typeface typeface;
     public static Typeface typefaceForHeading;
+    private static Context sContext;
 
     public static final String SERVER_IP = "http://138.68.166.117";
     public static final String SERVER_IP_FOR_IMAGE = "http://138.68.166.117/";

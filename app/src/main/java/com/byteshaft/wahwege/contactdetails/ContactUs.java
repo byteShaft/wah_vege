@@ -2,7 +2,13 @@ package com.byteshaft.wahwege.contactdetails;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.byteshaft.requests.HttpRequest;
@@ -18,25 +24,26 @@ import java.net.HttpURLConnection;
  * Created by husnain on 10/31/17.
  */
 
-public class ContactUs extends Activity {
+public class ContactUs extends Fragment {
 
     private TextView mContactUsText;
     private TextView mContactUs;
     private HttpRequest request;
+    private View mBaseView;
 
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact_us);
-        overridePendingTransition(R.anim.anim_left_in, R.anim.anim_left_out);
-        mContactUsText = findViewById(R.id.title_contact_text);
-        mContactUs = (findViewById(R.id.title_about_us));
-
-        mContactUsText.setTypeface(AppGlobals.typefaceNormal);
-        mContactUs.setTypeface(AppGlobals.typefaceNormal);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mBaseView = inflater.inflate(R.layout.activity_contact_us, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar()
+                .setTitle("Contact Us");
+        setHasOptionsMenu(true);
+        mContactUsText = mBaseView.findViewById(R.id.title_contact_text);
+        mContactUs = mBaseView.findViewById(R.id.title_about_us);
 
         mContactUsText.setMovementMethod(new ScrollingMovementMethod());
-        request = new HttpRequest(getApplicationContext());
+        request = new HttpRequest(getActivity());
         request.setOnReadyStateChangeListener(new HttpRequest.OnReadyStateChangeListener() {
             @Override
             public void onReadyStateChange(HttpRequest request, int readyState) {
@@ -59,5 +66,6 @@ public class ContactUs extends Activity {
         });
         request.open("GET", String.format("%scontact-us", AppGlobals.BASE_URL));
         request.send();
+        return mBaseView;
     }
 }

@@ -41,16 +41,16 @@ public class Service extends FirebaseMessagingService {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         DisplayImageOptions options;
         options = new DisplayImageOptions.Builder()
-                .showImageOnFail(R.mipmap.ic_launcher)
-                .showImageOnLoading(R.mipmap.ic_launcher)
+                .showImageOnFail(R.mipmap.vegetables)
+                .showImageOnLoading(R.mipmap.vegetables)
                 .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
                 .cacheInMemory(false)
                 .cacheOnDisc(false).considerExifParams(true).build();
 //        Bitmap bitmap = sImageLoader.loadImageSync(AppGlobals.SERVER_IP + photo, options);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.circle))
-                .setSmallIcon(R.mipmap.circle)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.vegetables))
+                .setSmallIcon(R.mipmap.vegetables)
                 .setStyle(new NotificationCompat.BigTextStyle())
                 .setContentTitle(appName)
                 .setContentText(messageBody)
