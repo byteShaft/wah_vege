@@ -1,29 +1,32 @@
 package com.byteshaft.wahwege;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
-import com.byteshaft.wahwege.FutureDemand.AddDemand;
 import com.byteshaft.wahwege.FutureDemand.DemandList;
 import com.byteshaft.wahwege.account.LoginActivity;
 import com.byteshaft.wahwege.account.UpdateProfile;
 import com.byteshaft.wahwege.contactdetails.AboutUs;
+import com.byteshaft.wahwege.contactdetails.ContactUs;
 import com.byteshaft.wahwege.contactdetails.Faq;
-import com.byteshaft.wahwege.contactdetails.RateUs;
 import com.byteshaft.wahwege.shopnow.ShopNow;
 import com.byteshaft.wahwege.utils.AppGlobals;
-import com.codemybrainsout.ratingdialog.RatingDialog;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        View headerView;
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -52,6 +56,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
+        headerView = navigationView.getHeaderView(0);
+        TextView name = headerView.findViewById(R.id.user_name);
+        TextView email = headerView.findViewById(R.id.user_email);
+        name.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_FULL_NAME));
+        email.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_EMAIL));
         if (AppGlobals.isLogin()) {
             if (getIntent().getBooleanExtra("promotion", false)) {
                 loadFragment(new Notifications());
@@ -102,7 +112,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
             shareDialog();
 
+        } else if (id == R.id.nav_contact) {
+            loadFragment(new ContactUs());
+
         } else if (id == R.id.nav_rate_us) {
+            rateApp();
 
         } else if (id == R.id.nav_logout) {
             logOutDialog();
@@ -144,12 +158,36 @@ public class MainActivity extends AppCompatActivity
         tx.commit();
     }
 
+    public void rateApp() {
+        try {
+            Intent rateIntent = rateIntentForUrl("market://details");
+            startActivity(rateIntent);
+        } catch (ActivityNotFoundException e) {
+            Intent rateIntent = rateIntentForUrl("https://play.google.com/store/apps/details?id=com.byteshaft.wahwege");
+            startActivity(rateIntent);
+        }
+    }
+
+    private Intent rateIntentForUrl(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(String.format("%s?id=%s", url, getPackageName())));
+        int flags = Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_MULTIPLE_TASK;
+        if (Build.VERSION.SDK_INT >= 21) {
+            flags |= Intent.FLAG_ACTIVITY_NEW_DOCUMENT;
+        } else {
+            //noinspection deprecation
+            flags |= Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET;
+        }
+        intent.addFlags(flags);
+        return intent;
+    }
+
     private void shareDialog() {
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=byteshaft.com.tasbeeh&hl=en");
-        sendIntent.setType("text/plain");
-        startActivity(sendIntent);
+        Intent share = new Intent(android.content.Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        share.putExtra(Intent.EXTRA_SUBJECT, "Title Of The Post");
+        share.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=byteshaft.com.tasbeeh&hl=en");
+        startActivity(Intent.createChooser(share, "Share link!"));
     }
 
     public void loadFragmentWithBackStack(Fragment fragment) {

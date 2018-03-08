@@ -37,9 +37,9 @@ public class AddDemand extends Fragment implements View.OnClickListener{
     private EditText mDateEditText;
     private Button mNextButton;
     public static String mDateEditTextString;
-
     private Calendar mCalendar;
     private DatePickerDialog.OnDateSetListener date;
+
 
     @Nullable
     @Override
@@ -75,6 +75,7 @@ public class AddDemand extends Fragment implements View.OnClickListener{
         String myFormat = "yyyy-MM-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         mDateEditText.setText(sdf.format(mCalendar.getTime()));
+        mDateEditText.setEnabled(false);
     }
 
     @Override

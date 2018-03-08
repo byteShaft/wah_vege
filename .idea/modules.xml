@@ -4,8 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WahWege.iml" filepath="$PROJECT_DIR$/WahWege.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/wah_vege.iml" filepath="$PROJECT_DIR$/wah_vege.iml" />
       <module fileurl="file://$PROJECT_DIR$/wah_vege.iml" filepath="$PROJECT_DIR$/wah_vege.iml" />
     </modules>
   </component>
