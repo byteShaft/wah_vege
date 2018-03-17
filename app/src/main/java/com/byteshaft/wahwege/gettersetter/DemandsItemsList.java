@@ -9,7 +9,16 @@ public class DemandsItemsList {
 
     private int productId;
     private String productName;
+    private String productUnit;
     private float productQuantity;
+
+    public String getProductUnit() {
+        return productUnit;
+    }
+
+    public void setProductUnit(String productUnit) {
+        this.productUnit = productUnit;
+    }
 
     public float getProductQuantity() {
         return productQuantity;

@@ -1,7 +1,5 @@
 package com.byteshaft.wahwege.gettersetter;
 
-import android.widget.TextView;
-
 /**
  * Created by husnain on 11/6/17.
  */
@@ -14,6 +12,16 @@ public class VegetablesFruits {
     private String productMarketPrice;
     private String productWahVegePrice;
     private String productStockCount;
+    private String productunit;
+
+    public String getProductunit() {
+        return productunit;
+    }
+
+    public void setProductunit(String productunit) {
+        this.productunit = productunit;
+    }
+
 
     public String getProductStockCount() {
         return productStockCount;

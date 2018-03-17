@@ -2,7 +2,6 @@ package com.byteshaft.wahwege.adapters;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -52,6 +51,7 @@ public class VegetableFruitsAdapter extends ArrayAdapter<String> {
             convertView = activity.getLayoutInflater().inflate(R.layout.delegate_vegetables_fruits, parent, false);
             viewHolder = new ViewHolder();
             viewHolder.productName = convertView.findViewById(R.id.product_name);
+            viewHolder.productUnit = convertView.findViewById(R.id.product_unit);
             viewHolder.productMarketPrice = convertView.findViewById(R.id.product_price);
             viewHolder.productWahVegePrice = convertView.findViewById(R.id.wahvege_price);
             viewHolder.productImage = convertView.findViewById(R.id.product_image);
@@ -64,6 +64,7 @@ public class VegetableFruitsAdapter extends ArrayAdapter<String> {
         }
         VegetablesFruits vegetablesFruits = arrayList.get(position);
         viewHolder.productName.setText(vegetablesFruits.getProductName());
+        viewHolder.productUnit.setText(vegetablesFruits.getProductunit());
         viewHolder.productMarketPrice.setText(vegetablesFruits.getProductMarketPrice());
         viewHolder.productWahVegePrice.setText(vegetablesFruits.getProductWahVegePrice());
         viewHolder.availableStock.setText(vegetablesFruits.getProductStockCount());
@@ -119,8 +120,8 @@ public class VegetableFruitsAdapter extends ArrayAdapter<String> {
                 Orders orders = new Orders();
                 orders.setProductId(vegetablesFruits.getProductId());
                 orders.setProductImage(vegetablesFruits.getProductImage());
-                orders.setProductPrice(Integer.parseInt(vegetablesFruits.getProductMarketPrice()));
-                orders.setWahvegePrice(vegetablesFruits.getProductWahVegePrice());
+                orders.setProductPrice(Float.parseFloat(vegetablesFruits.getProductMarketPrice()));
+                orders.setWahvegePrice(Float.valueOf(vegetablesFruits.getProductWahVegePrice()));
                 orders.setProductQuantity(Float.parseFloat(mQuantityValue));
                 orders.setProductName(vegetablesFruits.getProductName());
                 if (AppGlobals.ordersHashMap == null) {
@@ -137,6 +138,7 @@ public class VegetableFruitsAdapter extends ArrayAdapter<String> {
 
     class ViewHolder {
         TextView productName;
+        TextView productUnit;
         CircleImageView productImage;
         TextView productMarketPrice;
         TextView productWahVegePrice;

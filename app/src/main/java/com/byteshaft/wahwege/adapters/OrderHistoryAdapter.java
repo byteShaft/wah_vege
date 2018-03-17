@@ -63,11 +63,13 @@ public class OrderHistoryAdapter extends ArrayAdapter {
                                 viewHolder.relativeLayout, false);
                 TextView prductName = childView.findViewById(R.id.product_name);
                 TextView prductQuantity = childView.findViewById(R.id.product_quantity);
+                TextView productUnit = childView.findViewById(R.id.product_unit);
                 TextView productPrice = childView.findViewById(R.id.product_Price);
                 viewHolder.relativeLayout.addView(childView);
                 OrderHistoryItems orderHistoryItems = orderHistoryItemsArrayList.get(i);
                 prductName.setText(orderHistoryItems.getProductName());
-                prductQuantity.setText(orderHistoryItems.getProductQuantity() + "KG");
+                productUnit.setText(orderHistoryItems.getProductUnit());
+                prductQuantity.setText(orderHistoryItems.getProductQuantity()+"");
                 float quantity = orderHistoryItems.getProductQuantity();
                 double totalPrice = quantity * Integer.valueOf(orderHistoryItems.getProductPrice());
                 productPrice.setText("RS: " + String.valueOf(totalPrice));

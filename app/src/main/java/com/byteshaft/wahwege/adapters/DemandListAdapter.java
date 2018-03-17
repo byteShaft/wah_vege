@@ -53,11 +53,13 @@ public class DemandListAdapter extends ArrayAdapter {
                         .inflate(R.layout.delegate_demand_items_list, viewHolder.relativeLayout,
                                 false);
                 TextView productName = childView.findViewById(R.id.product_name);
+                TextView productUnit = childView.findViewById(R.id.product_unit);
                 TextView productQuantity = childView.findViewById(R.id.product_quantity);
                 viewHolder.relativeLayout.addView(childView);
                 DemandsItemsList demandsItemsList = demandsItemsListArrayList.get(i);
                 productName.setText(demandsItemsList.getProductName());
-                productQuantity.setText(demandsItemsList.getProductQuantity() + "KG");
+                productUnit.setText(demandsItemsList.getProductUnit());
+                productQuantity.setText(demandsItemsList.getProductQuantity() + "");
                 viewHolder.orderDate.setText(demandsMianList.getDeliveryDate());
             }
         } else {

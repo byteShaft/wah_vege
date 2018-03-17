@@ -9,8 +9,17 @@ public class OrderHistoryItems {
 
     private int productId;
     private String productName;
+    private String productUnit;
     private float productQuantity;
     private int productPrice;
+
+    public String getProductUnit() {
+        return productUnit;
+    }
+
+    public void setProductUnit(String productUnit) {
+        this.productUnit = productUnit;
+    }
 
     public float getProductQuantity() {
         return productQuantity;

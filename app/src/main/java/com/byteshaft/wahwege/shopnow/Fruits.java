@@ -15,7 +15,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.byteshaft.requests.HttpRequest;
 import com.byteshaft.wahwege.R;
@@ -106,6 +105,7 @@ public class Fruits extends Fragment implements HttpRequest.OnErrorListener,
                                 vegetablesFruits.setProductWahVegePrice(jsonObject.getString("wah_vege_price"));
                                 vegetablesFruits.setProductMarketPrice(jsonObject.getString("market_price"));
                                 vegetablesFruits.setProductStockCount(jsonObject.getString("stock_count"));
+                                vegetablesFruits.setProductunit(jsonObject.getString("unit"));
                                 vegetablesFruits.setProductImage(jsonObject.getString("image"));
                                 mfruitsArrayList.add(vegetablesFruits);
                                 vegetableFruitsAdapter.notifyDataSetChanged();
