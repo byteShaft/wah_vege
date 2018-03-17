@@ -96,6 +96,7 @@ public class Vegetables extends Fragment implements HttpRequest.OnErrorListener,
                                 vegetablesFruits.setProductWahVegePrice(jsonObject.getString("wah_vege_price"));
                                 vegetablesFruits.setProductMarketPrice(jsonObject.getString("market_price"));
                                 vegetablesFruits.setProductStockCount(jsonObject.getString("stock_count"));
+                                vegetablesFruits.setProductunit(jsonObject.getString("unit"));
                                 vegetablesFruits.setProductImage(jsonObject.getString("image"));
                                 mVegetablesArrayList.add(vegetablesFruits);
                                 vegetableFruitsAdapter.notifyDataSetChanged();

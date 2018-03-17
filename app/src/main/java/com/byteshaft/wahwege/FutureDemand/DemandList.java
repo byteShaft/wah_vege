@@ -103,6 +103,7 @@ public class DemandList extends Fragment implements HttpRequest.OnReadyStateChan
                                     JSONObject jsonObjectDetails = orderItemsObject.getJSONObject("item");
                                     demandsItemsList.setProductId(jsonObjectDetails.getInt("id"));
                                     demandsItemsList.setProductName(jsonObjectDetails.getString("name"));
+                                    demandsItemsList.setProductUnit(jsonObjectDetails.getString("unit"));
                                     demandsItemsList.setProductQuantity(orderItemsObject.getInt("quantity"));
                                     arrayList.add(demandsItemsList);
                                 }

@@ -28,6 +28,18 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/product_unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="70dp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
 
         <TextView
             android:id="@+id/product_Price"

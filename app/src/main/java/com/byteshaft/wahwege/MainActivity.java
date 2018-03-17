@@ -89,10 +89,14 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_future_demand) {
-            loadFragment(new DemandList());
+        if (id == R.id.nav_home) {
+            loadFragment(new ShopNow());
+
         } else if (id == R.id.nav_user_profile) {
             startActivity(new Intent(getApplicationContext(), UpdateProfile.class));
+
+        } else if (id == R.id.nav_future_demand) {
+            loadFragment(new DemandList());
 
         } else if (id == R.id.nav_purchase_history) {
             loadFragment(new PurchaseHistory());

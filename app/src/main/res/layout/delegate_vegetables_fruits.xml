@@ -122,6 +122,14 @@
                         android:layout_toRightOf="@+id/stock_title"
                         android:text="50"
                         android:textColor="#000" />
+                    <TextView
+                        android:id="@+id/product_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_toRightOf="@+id/stock_title"
+                        android:text="50"
+                        android:textColor="#000" />
                 </RelativeLayout>
 
             </RelativeLayout>

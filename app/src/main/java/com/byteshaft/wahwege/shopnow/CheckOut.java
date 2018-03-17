@@ -10,14 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.byteshaft.requests.HttpRequest;
-import com.byteshaft.wahwege.MainActivity;
 import com.byteshaft.wahwege.R;
-import com.byteshaft.wahwege.account.LoginActivity;
-import com.byteshaft.wahwege.account.SelectSector;
 import com.byteshaft.wahwege.adapters.OrdersAdapter;
-import com.byteshaft.wahwege.adapters.SectorAdapter;
 import com.byteshaft.wahwege.gettersetter.Orders;
-import com.byteshaft.wahwege.gettersetter.Sector;
 import com.byteshaft.wahwege.utils.AppGlobals;
 
 import org.json.JSONArray;
@@ -73,7 +68,7 @@ public class CheckOut extends AppCompatActivity implements View.OnClickListener,
         for (Map.Entry<Integer, Orders> map : AppGlobals.ordersHashMap.entrySet()) {
             ordersArrayList.add(map.getValue());
             Orders orders = map.getValue();
-            double calculateTotalPrice = Integer.valueOf(orders.getWahvegePrice()) * orders.getProductQuantity();
+            double calculateTotalPrice = orders.getWahvegePrice() * orders.getProductQuantity();
             Log.i("TAG", " calculate total  "+ calculateTotalPrice);
             total = total + calculateTotalPrice;
             Log.i("TAG", " total  "+ total);
@@ -142,7 +137,7 @@ public class CheckOut extends AppCompatActivity implements View.OnClickListener,
         JSONArray jsonArray = new JSONArray();
         for (Map.Entry<Integer, Orders> map : AppGlobals.ordersHashMap.entrySet()) {
             Orders orders = map.getValue();
-            double calculateTotalPrice = Integer.valueOf(orders.getWahvegePrice()) * orders.getProductQuantity();
+            double calculateTotalPrice = orders.getWahvegePrice() * orders.getProductQuantity();
             total = total + calculateTotalPrice;
             JSONObject jsonObject = new JSONObject();
             try {
