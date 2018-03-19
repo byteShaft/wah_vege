@@ -69,8 +69,8 @@ public class OrdersAdapter extends ArrayAdapter<String> {
             }
         });
         float quantity = orders.getProductQuantity();
-        double totalPrice = quantity * Float.valueOf(orders.getWahvegePrice());
-        viewHolder.totalPrice.setText("WahVege Order Price: " + String.valueOf(totalPrice));
+        double totalPrice = quantity * orders.getWahvegePrice();
+        viewHolder.totalPrice.setText(String.format("WahVege Order Price: %s", totalPrice));
         Log.i("TAG", "total price "+totalPrice);
         return convertView;
     }

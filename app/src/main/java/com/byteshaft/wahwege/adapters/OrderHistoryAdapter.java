@@ -69,12 +69,13 @@ public class OrderHistoryAdapter extends ArrayAdapter {
                 OrderHistoryItems orderHistoryItems = orderHistoryItemsArrayList.get(i);
                 prductName.setText(orderHistoryItems.getProductName());
                 productUnit.setText(orderHistoryItems.getProductUnit());
-                prductQuantity.setText(orderHistoryItems.getProductQuantity()+"");
+                System.out.println(orderHistoryItems.getProductQuantity()+ "khana getProductQuantity");
+                prductQuantity.setText(String.valueOf(orderHistoryItems.getProductQuantity()));
                 float quantity = orderHistoryItems.getProductQuantity();
-                double totalPrice = quantity * Integer.valueOf(orderHistoryItems.getProductPrice());
-                productPrice.setText("RS: " + String.valueOf(totalPrice));
+                double totalPrice = quantity * orderHistoryItems.getProductPrice();
+                productPrice.setText("RS: " + totalPrice);
                 grandTotal = grandTotal + totalPrice;
-                viewHolder.totalOrderPrice.setText("RS: " + String.valueOf(grandTotal));
+                viewHolder.totalOrderPrice.setText(String.format("RS: %s", grandTotal));
                 String input = orderHistoryMain.getDeliveryDate();
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS");
                 SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
