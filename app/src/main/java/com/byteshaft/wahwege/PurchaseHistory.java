@@ -88,7 +88,7 @@ public class PurchaseHistory extends Fragment implements HttpRequest.OnErrorList
                                     orderHistoryItems.setProductName(jsonObjectDetails.getString("name"));
                                     orderHistoryItems.setProductUnit(jsonObjectDetails.getString("unit"));
                                     orderHistoryItems.setProductPrice(jsonObjectDetails.getInt("wah_vege_price"));
-                                    orderHistoryItems.setProductQuantity(orderItemsObject.getInt("quantity"));
+                                    orderHistoryItems.setProductQuantity((float) orderItemsObject.getDouble("quantity"));
                                     arrayList.add(orderHistoryItems);
                                 }
                                 orderHistoryMain.setArrayList(arrayList);

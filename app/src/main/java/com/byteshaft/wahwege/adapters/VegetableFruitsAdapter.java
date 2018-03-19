@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.byteshaft.wahwege.R;
 import com.byteshaft.wahwege.gettersetter.Orders;
@@ -100,7 +101,14 @@ public class VegetableFruitsAdapter extends ArrayAdapter<String> {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.toString().trim().length()==0){
+                if (charSequence.toString().equals("0")) {
+                    submitButton.setEnabled(false);
+                    Toast.makeText(AppGlobals.getContext(), "please enter quantity in positive number", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    submitButton.setEnabled(true);
+                }
+                if (charSequence.toString().trim().length() == 0 ) {
                     submitButton.setEnabled(false);
                 } else {
                     submitButton.setEnabled(true);
